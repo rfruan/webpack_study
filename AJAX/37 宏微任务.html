@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微任务与宏任务</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：阅读并回答打印的执行顺序
+     * 执行第一个 script 脚本事件宏任务，里面同步代码，遇到 宏任务/微任务 交给宿主环境，有结果回调函数进入对应队列。当执行栈空闲时，清空微任务队列，再执行下一个宏任务，从1再来
+
+    */
+    console.log(1)
+    setTimeout(() => {
+      console.log(2) //宏任务JS 执行脚本事件，setTimeout/setInterval，AJAX请求完成事件，用户交互事件等
+    }, 0)
+    const p = new Promise((resolve, reject) => {
+      resolve(3)
+    })
+    p.then(res => {
+      console.log(res) //微任务， Promise对象.then()的回调
+    })
+    console.log(4)
+
+    // 1 4 2 3 
+  </script>
+</body>
+
+</html>

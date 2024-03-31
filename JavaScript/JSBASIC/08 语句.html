@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  span {
+    display: block;
+    width: 100px;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(211, 192, 255, 0.4);
+    background-color: rgba(223, 13, 48, 0.1);
+    color: pink;
+  }
+</style>
+
+<body>
+  <!-- 1. 表达式可以求值，写在赋值语句右侧，语句不一定有值，如alert,prompt -->
+  <!-- 2.1 if分支 -->
+  <script>
+    // 单分支
+    let a = 70
+    //除了空字符串，其余字符串都为真
+    // if (a > 60) {
+    //   alert('pass')
+    // }
+    // 双分支
+    // let year = +prompt('input year')
+    // if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
+    //   alert('闰年')
+    // } else {
+    //   alert('平年')
+    // }
+    // 多分支
+    // let grade = 88
+    // if (grade >= 90) {
+    //   alert('优秀')
+    // } else if (grade >= 70) {
+    //   alert('良好')
+    // } else if (grade >= 60) {
+    //   alert('及格')
+    // } else {
+    //   alert('不及格')
+    // }
+  </script>
+  <!-- 2.2 三元运算符   条件 ? 满足：不满足-->
+  <script>
+    // alert(3 > 5 ? 3 : 5)
+    // 数字补0
+
+    // let num = prompt('input num')
+    // num = num >= 10 ? num : 0 + num
+    // alert(num)
+  </script>
+
+  <!-- 2.3 switch  条件为全等===, 链表比较，分支多时效率更高 -->
+  <script>
+    // let num1 = +prompt('input num1')
+    // let num2 = +prompt('input num2')
+    // let op = prompt('input operation')
+
+    // switch (op) {
+    //   case '+':
+    //     console.log(num1 + num2)
+    //     break
+    //   case '-':
+    //     console.log(num1 - num2)
+    //     break
+    //   case '*':
+    //     console.log(num1 * num2)
+    //     break
+    //   case '/':
+    //     console.log(num1 / num2)
+    //     break
+    //   default:
+    //     console.log('null')
+    // }
+  </script>
+
+  <!-- 3.1 循环while  退出为break continue-->
+  <script>
+    // let i = 1
+    // let sum = 0
+    // let oddsum = 0
+    // while (i <= 100) {
+    //   document.write(i + ' ')
+    //   sum += i
+    //   if (i % 2 == 0) {
+    //     oddsum += i
+    //   }
+    //   i++
+
+    // }
+    // document.write(`总和为${sum}`)
+    // document.write(`偶数总和为${oddsum}`)
+    // let money = 100
+    // let val = 0
+    // let sel = 0
+    // while (sel !== 4) {
+    //   sel = +prompt(`
+    // 请选择操作：
+    // 1. 存钱
+    // 2. 取钱
+    // 3. 查看余额
+    // 4. 退出`)
+    //   switch (sel) {
+    //     case 1:
+    //       val = +prompt('input money')
+    //       money += val
+    //       break
+    //     case 2:
+    //       val = +prompt('input money')
+    //       money -= val
+    //       break
+    //     case 3:
+    //       alert(`您的余额为${money}元`)
+    //       break
+    //     default:
+    //       break
+    //   }
+    // }
+
+  </script>
+  <!-- 3.2 循环for -->
+  <script>
+    // let oddsum = 0
+    // for (let i = 1; i <= 100; i++) {
+    //   if (i % 2 == 0) {
+    //     oddsum += i
+    //   }
+    // }
+    // document.write(oddsum)
+    for (let i = 1; i <= 9; i++) {
+      for (let j = 1; j <= i; j++)
+        document.write(`<span>${j}x${i}=${i * j}</span>`)
+      document.write('<br>')
+    }
+  </script>
+
+
+</body>
+
+</html>

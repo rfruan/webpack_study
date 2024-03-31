@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 下面代码17行的this值 指向 Star构造函数，说法对吗，为什么？
+    function Star() {
+      this.name = '姓名'
+    }
+
+    Star.prototype.sing = function () {
+      console.log(this);  //实例对象，不是Star构造函数，不是静态方法
+    }
+
+    const o1 = new Star()
+    o1.sing()
+  </script>
+</body>
+
+</html>

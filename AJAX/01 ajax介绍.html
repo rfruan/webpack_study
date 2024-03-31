@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="province">
+
+  </div>
+  <div class="container">
+    <form id="editForm" class="row">
+      <!-- 输入省份名字 -->
+      <div class="mb-3 col">
+        <label class="form-label">省份名字</label>
+        <input type="text" value="北京" name="province" class="form-control province" placeholder="请输入省份名称" />
+      </div>
+      <!-- 输入城市名字 -->
+      <div class="mb-3 col">
+        <label class="form-label">城市名字</label>
+        <input type="text" value="北京市" name="city" class="form-control city" placeholder="请输入城市名称" />
+      </div>
+    </form>
+    <button type="button" class="btn btn-primary sel-btn">查询</button>
+    <br><br>
+    <p>地区列表: </p>
+    <ul class="list-group">
+      <!-- 示例地区 -->
+      <li class="list-group-item">东城区</li>
+    </ul>
+  </div>
+
+  <!-- ajax用于浏览器和服务器进行数据通信，异步的js和XML,使用XMLHttpRequest对象于服务器进行通信 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // axios库与服务器进行通信
+    // 1. 引入axios的js文件
+    // 2. 使用axios函数，传入配置用then接受结果做后续处理
+    // url：http://hmajax.itheima.net/api/province
+    // axios({
+    //   //url  统一资源定位符，http 协议  hmajax.itheima.net域名，标记服务器在互联网中方位  api/province资源路径，标记资源在服务器下的具体位置
+    //   url: "http://hmajax.itheima.net/api/province"  
+    // }).then((result) => {
+    //   //对服务器返回的数据做处理
+    //   // console.log(result)
+    //   document.querySelector('.province').innerHTML = result.data.list.map(item => item).join('<br>')
+    // })
+
+    //http://hmajax.itheima.net/api/news ，获取 - 新闻列表
+    axios({
+      url: "http://hmajax.itheima.net/api/news"
+    }).then((result) => {
+      console.log(result.data)
+    })
+
+    //url查询参数 
+    //axios 在运行时把参数名和值，会拼接到 url?参数名=值 ，如http://hmajax.itheima.net/api/city?pname=河北省
+
+    document.querySelector('button').addEventListener('click', function () {
+      let pname = document.querySelector('input.form-control.province').value
+      let cname = document.querySelector('.city').value
+      console.log(pname)
+      axios({
+        url: "http://hmajax.itheima.net/api/city",  //一定要加,
+        params: {
+          pname,
+          cname
+        }
+      }).then(result => {
+        console.log(result.data)
+        document.querySelector('.list-group').innerHTML = result.data.list.map(item => `<li class="list-group-item">${item}</li>`).join("") //join默认,拼接
+      })
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>

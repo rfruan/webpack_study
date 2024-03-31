@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .grandfather {
+    width: 800px;
+    height: 800px;
+    background-color: blue;
+  }
+
+  .father {
+    width: 400px;
+    height: 400px;
+    background-color: green;
+  }
+
+  .son {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+  }
+</style>
+
+<body>
+  <!-- 事件触发会经历捕获和冒泡阶段，捕获是由父到子，冒泡是由子到父
+  事件流体现在父子盒子的执行上，指的是同名事件
+  冒泡是L0,L2版本都用的，捕获是L2版本设置为true触发 -->
+
+  <div class="grandfather">
+    <div class="father">
+      <div class="son">
+
+      </div>
+    </div>
+  </div>
+  <!-- 1. 冒泡 -->
+  <script>
+    //LO只有冒泡 点击son 应该先出来son-father-grandfather
+    document.querySelector('.grandfather').onclick = function () {
+      alert('i am grandfather')
+    }
+    document.querySelector('.father').onclick = function () {
+      alert('i am father')
+    }
+    document.querySelector('.son').onclick = function (e) {
+      alert('i am son')
+      //L0 阻止冒泡，只触发当前事件
+      e.stopPropagation()
+    }
+  </script>
+  <!-- 2. 捕获 -->
+  <!-- <script>
+    //l2 默认false是冒泡，true为捕获, 捕获是grandfather-father-son
+    document.querySelector('.grandfather').addEventListener('click', function () {
+      alert('i am grandfather')
+    }, true)
+    document.querySelector('.father').addEventListener('click', function () {
+      alert('i am father')
+    }, true)
+    document.querySelector('.son').addEventListener('click', function () {
+      alert('i am son')
+    }, true) 
+  </script> -->
+  <!-- 3. 阻止冒泡 阻断事件的流动，能阻止冒泡和捕获，保证事件只在当前元素被执行，而不再去影响到其对应的祖先元素。 -->
+  <script>
+    //L2 方法 stopPropagation 需要事件对象调用 
+    // document.querySelector('.grandfather').addEventListener('click', function () {
+    //   alert('i am grandfather')
+    // })
+    // document.querySelector('.father').addEventListener('click', function () {
+    //   alert('i am father')
+    // })
+    // document.querySelector('.son').addEventListener('click', function (e) {
+    //   alert('i am son')
+    //   //结果只有 i am son 冒泡是子到父
+    //   e.stopPropagation()
+    // })
+    //mouseenter 和 mouseout 会有冒泡效果
+    document.querySelector('.grandfather').addEventListener('mouseover', function () {
+      console.log('i am in grandfather')
+    })
+    document.querySelector('.father').addEventListener('mouseover', function () {
+      console.log('i am in  father')
+    })
+    document.querySelector('.son').addEventListener('mouseover', function (e) {
+      console.log('i am in son')
+      //结果只有 i am son 冒泡是子到父
+      // e.stopPropagation()
+    })
+
+    //mouseenter 和 mouseout 会有冒泡效果
+    document.querySelector('.grandfather').addEventListener('mouseout', function () {
+      console.log('i am out grandfather')
+    })
+
+    // mouseenter  和 mouseleave   没有冒泡效果 (推荐)，自动设置只触发当前事件了
+    // document.querySelector('.grandfather').addEventListener('mouseenter', function () {
+    //   console.log('i am in grandfather')
+    // })
+    // document.querySelector('.father').addEventListener('mouseenter', function () {
+    //   console.log('i am in  father')
+    // })
+    // document.querySelector('.son').addEventListener('mouseenter', function (e) {
+    //   console.log('i am in son')
+    //   //结果只有 i am son 冒泡是子到父
+    //   // e.stopPropagation()
+    // })
+
+    // //mouseenter 和 mouseout 会有冒泡效果
+    // document.querySelector('.grandfather').addEventListener('mouseleave', function () {
+    //   console.log('i am out grandfather')
+    // })
+
+  </script>
+</body>
+
+</html>

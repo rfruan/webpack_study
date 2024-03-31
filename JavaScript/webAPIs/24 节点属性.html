@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div></div>
+  <button class="add">增加节点</button>
+  <button class="del">删除节点</button>
+  <!-- 节点， DOM 的操作都是针对元素节点的属性或文本的，除此之外也有专门针对元素节点本身的操作，如插入、复制、删除、替换等 -->
+  <script>
+    const btn = document.querySelector('.add')
+    const div = document.querySelector('div')
+
+    btn.addEventListener('click', function () {
+      // 1.创建节点
+      const p = document.createElement('p') //写标签名
+      const d = document.createElement('div') //写标签名
+      p.innerHTML = '新增一个节点'
+      p.className = 'info'
+      // 2. 克隆节点，设置为true 就是深复制，连着子节点一起全部复制
+      const pclone = p.cloneNode(true) //如果为true 就会把内容一起复制，如果false只会复制<p class="info" style="color: red;"></p>，而不会复制内容
+      // console.log(pclone)
+      pclone.style.color = 'red'
+      // 3. 插入,appendChild在末尾（结束标签前）插入节点，insertBefore 在父节点中任意子节点之前插入新节点
+      div.appendChild(p)
+      div.appendChild(d)
+      div.insertBefore(pclone, p)//插入的节点， 插入的位置
+      // 5. 查看节点，父子关系，兄弟关系
+      console.log(div.childNodes)    //子节点NodeList(2),回车换行会被认为是空白文本节点
+      console.log(div.children)//包含元素HTMLCollection(2),只获取元素类型节点
+      console.log(p.parentNode) //p的父亲div,以相对位置查找节点,最近的一个父亲
+      console.log(p.previousSibling)//上个节点
+      console.log(p.nextSibling)//下个节点
+      console.log(p.nextElementSibling)
+      console.log(p.previousElementSibling)
+
+    })
+
+    const deletebtn = document.querySelector('.del') //写标签名
+    deletebtn.addEventListener('click', function () {
+
+      // 4. 删除
+      const p = document.querySelector('.info')
+      div.removeChild(p)//从头部删除，只有父子关系才能删除
+
+
+
+    })
+    // 移动端会有touchstart，touchend，touchmove事件，表示触摸屏触摸了，离开了，滑动
+
+  </script>
+</body>
+
+</html>

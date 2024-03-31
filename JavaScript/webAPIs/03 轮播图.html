@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0 auto;
+    padding: 0 auto;
+  }
+
+  img {
+    position: relative;
+    margin: 40px auto;
+    left: 50%;
+    margin-left: -350px;
+  }
+
+  h1 {
+    position: relative;
+    margin-top: -85px;
+    width: 700px;
+    color: green;
+    font-weight: 400;
+    background-color: rgba(0, 0, 0, .8);
+    text-indent: 1em;
+  }
+</style>
+
+<body>
+  <div>
+    <img src="images/b01.jpg" alt="">
+    <h1>挑战云歌单，欢迎你来</h1>
+  </div>
+
+  <script>
+    // 数据
+    const data = [
+      {
+        imgSrc: 'images/b01.jpg',
+        title: '挑战云歌单，欢迎你来'
+      },
+      {
+        imgSrc: 'images/b02.jpg',
+        title: '田园日记，上演上京记'
+      },
+      {
+        imgSrc: 'images/b03.jpg',
+        title: '甜蜜攻势再次回归'
+      },
+      {
+        imgSrc: 'images/b04.jpg',
+        title: '我为歌狂，生为歌王'
+      },
+      {
+        imgSrc: 'images/b05.jpg',
+        title: '年度校园主题活动'
+      },
+      {
+        imgSrc: 'images/b06.jpg',
+        title: 'pink老师新歌发布，5月10号正式推出'
+      },
+      {
+        imgSrc: 'images/b07.jpg',
+        title: '动力火车来到西安'
+      },
+      {
+        imgSrc: 'images/b08.jpg',
+        title: '钢铁侠3，英雄镇东风'
+      },
+      {
+        imgSrc: 'images/b09.jpg',
+        title: '我用整颗心来等你'
+      },
+    ]
+
+    const img = document.querySelector('img')
+    const h1 = document.querySelector('h1')
+
+    let i = 0
+    setInterval(function () {
+      i++
+      if (i <= data.length) {
+        img.src = data[i].imgSrc
+        h1.innerHTML = data[i].title
+      }
+    }, 1000)
+
+  </script>
+</body>
+
+</html>

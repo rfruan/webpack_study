@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例-图书管理</title>
+  <!-- 字体图标 -->
+  <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3736758_vxpb728fcyh.css">
+  <!-- 引入bootstrap.css -->
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 核心样式 -->
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <!-- 主体区域 -->
+  <div class="container">
+    <!-- 头部标题和添加按钮 -->
+    <div class="top">
+      <h3>图书管理</h3>
+      <button type="button" class="btn btn-primary plus-btn" data-bs-toggle="modal" data-bs-target=".add-modal"> + 添加
+      </button>
+    </div>
+    <!-- 数据列表 -->
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th style="width: 150px;">序号</th>
+          <th>书名</th>
+          <th>作者</th>
+          <th>出版社</th>
+          <th style="width: 180px;">操作</th>
+        </tr>
+      </thead>
+      <tbody class="list">
+        <!-- <tr>
+          <td>1</td>
+          <td>JavaScript程序设计</td>
+          <td>马特·弗里斯比</td>
+          <td>人民邮电出版社</td>
+          <td>
+            <span class="del">删除</span>
+            <span class="edit">编辑</span>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <!-- 新增-弹出框 -->
+  <div class="modal fade add-modal">
+    <!-- 中间白色区域 -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header top">
+          <span>添加图书</span>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body form-wrap">
+          <!-- 新增表单 -->
+          <form class="add-form">
+            <div class="mb-3">
+              <label for="bookname" class="form-label">书名</label>
+              <input type="text" class="form-control bookname" placeholder="请输入书籍名称" name="bookname">
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">作者</label>
+              <input type="text" class="form-control author" placeholder="请输入作者名称" name="author">
+            </div>
+            <div class="mb-3">
+              <label for="publisher" class="form-label">出版社</label>
+              <input type="text" class="form-control publisher" placeholder="请输入出版社名称" name="publisher">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer btn-group">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> 取消 </button>
+          <button type="button" class="btn btn-primary add-btn"> 保存 </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 编辑-弹出框 -->
+  <div class="modal fade edit-modal">
+    <!-- 中间白色区域 -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header top">
+          <span>编辑图书</span>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body form-wrap">
+          <!-- 编辑表单 -->
+          <form class="edit-form">
+            <input type="hidden" class="id" name="id">
+            <div class="mb-3">
+              <label for="bookname" class="form-label">书名</label>
+              <input type="text" class="form-control bookname" placeholder="请输入书籍名称" name="bookname">
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">作者</label>
+              <input type="text" class="form-control author" placeholder="请输入作者名称" name="author">
+            </div>
+            <div class="mb-3">
+              <label for="publisher" class="form-label">出版社</label>
+              <input type="text" class="form-control publisher" placeholder="请输入出版社名称" name="publisher">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer btn-group">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> 取消 </button>
+          <button type="button" class="btn btn-primary edit-btn"> 修改 </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
+  <script src="./lib/form-serialize.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+  <!-- 操作打包到外部js -->
+  <script src="js/index.js"></script>
+  <!-- 
+   1. 显示书籍列表 
+  <script>
+    // 1. 获取列表数据
+    const creator = '小张'  //管理员
+    const ullist = document.querySelector('.list')
+
+
+    function show() {
+      axios({
+        url: 'http://hmajax.itheima.net/api/books',
+        method: 'get',
+        params: {
+          creator
+        }
+      }).then(res => {
+        // console.log(res.data)
+        //获取列表渲染
+        const goodlist = res.data.data
+        render(goodlist)
+      }).catch(e => console.log(e.response.data.message))
+    }
+    show()
+    // 2. 渲染
+
+    function render(list) {
+      ullist.innerHTML = list.map((item, index) => {
+        const { id, bookname, author, publisher } = item
+        return `  <tr>
+          <td>${index + 1}</td>
+          <td>${bookname}</td>
+          <td>${author}</td>
+          <td>${publisher}</td>
+          <td data-id=${id}>
+            <span class="del">删除</span>
+            <span class="edit">编辑</span>
+          </td>
+        </tr> `
+      }).join(" ")
+    }
+  </script>
+  2.新增数据 
+  <script>
+    const addDom = document.querySelector('.add-modal')
+    const addmodal = new bootstrap.Modal(addDom)
+    const addform = document.querySelector('.add-form')
+    document.querySelector('.plus-btn').addEventListener('click', function () {
+      addform.reset() //表单重置
+      addmodal.show()
+    })
+
+    document.querySelector('.add-btn').addEventListener('click', function () {
+      const data = serialize(addform, { hash: true, empty: true })
+      const { bookname, author, publisher } = data
+      axios({
+        url: 'http://hmajax.itheima.net/api/books',
+        method: 'post',
+        data: {
+          bookname, author, publisher, creator
+        }
+      }).then(res => {
+        console.log(res.data.message)//添加成功，需要在渲染 
+        addmodal.hide()
+        show()
+      }).catch(e => console.log(e.response.data.message))
+    })
+
+
+  </script>
+
+  3. 删除数据
+  <script>
+
+    ullist.addEventListener('click', function (e) {
+      console.log(e.target.tagName)
+      if (e.target.innerHTML === '删除') {
+        const parent = e.target.parentNode
+        const id = parent.dataset.id
+        console.log(id)
+        axios({
+          url: `http://hmajax.itheima.net/api/books/${id}`,
+          method: 'DELETE',
+
+        }).then(res => {
+          console.log(res.data.message)//添加成功，需要在渲染
+          show()
+        }).catch(e => console.log(e.response.data.message))
+
+      }
+    })
+  </script>
+
+  4. 修改数据 
+  <script>
+    const editDom = document.querySelector('.edit-modal')
+    const editmodal = new bootstrap.Modal(editDom)
+    const editform = document.querySelector('.edit-form')
+    ullist.addEventListener('click', function (e) {
+      console.log(e.target.tagName)
+      if (e.target.innerHTML === '编辑') {
+        editmodal.show()
+        const parent = e.target.parentNode
+        const id = parent.dataset.id
+        console.log(id)
+        axios({
+          url: `http://hmajax.itheima.net/api/books/${id}`,
+          method: 'get',
+        }).then(res => {
+          console.log(res.data.data)//获取数据渲染表单
+          const data = res.data.data
+          for (let k in data) {
+            editform.querySelector(`.${k}`).value = data[k]
+          }
+          show()
+        }).catch(e => console.log(e.response.data.message))
+      }
+    })
+
+    document.querySelector('.edit-btn').addEventListener('click', function () {
+      const data = serialize(editform, { hash: true, empty: true })
+      const { id, bookname, author, publisher } = data
+      axios({
+        url: `http://hmajax.itheima.net/api/books/${id}`,
+        method: 'put',
+        data: {
+          bookname, author, publisher, creator
+        }
+      }).then(res => {
+        console.log(res.data.message)//添加成功，需要在渲染 
+        editmodal.hide()
+        show()
+      }).catch(e => console.log(e.response.data.message))
+    })
+
+
+  </script> -->
+</body>
+
+</html>

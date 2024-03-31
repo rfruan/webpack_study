@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //函数 封装重复代码，声明和调用，可以命名，默认值，返回值，默认返回undefined，小驼峰命名，传入参数个数没有限制，默认一一对应，少补undefined ，多忽略，实参要与形参的顺序一致
+    //一个完整函数包括关键字、函数名、形式参数、函数体、返回值5个部分
+    function fn(a = 0, b = 0) {
+      return a + b
+    }
+    fn(1, 2)
+    //函数内为局部变量，外为全局变量，函数内未用let的是全局变量,就近原则，return后面不执行，在能够访问到的情况下 先局部 局部没有在找全局
+    //函数可以分为具名函数和匿名函数，匿名函数：没有名字的函数,无法直接使用，必须先声明后使用，不可以命名，可以赋值
+    let fn1 = function () {
+      console.log('匿名函数')
+    }
+    fn1()
+
+    //立即执行函数,两种表达，多个立即函数需要；隔开，立即执行，后期会经常使用，避免全局变量的污染
+    /* (function(){
+      xxx
+    })()*/
+
+    // (function(){xxx}());
+
+    // !function(){}() 三种都是,只要加了!
+
+  </script>
+
+
+  <!-- 练习题 -->
+  <script>
+    //1. 封装函数, 名字为sum  , 根据传入的两个数,求和并且返回求和的结果（函数必须有return返回值）
+    // function sum(a, b) {
+    //   return a + b
+    // }
+    // let a = +prompt('input a '), b = +prompt('input b')
+
+    // console.log(`a+b=${a + b}`)
+
+
+    // 实现两个数的值交换(函数版本) 
+    // console.log(a, b)
+    // function swap(a, b) {
+    //   let tmp = a
+    //   a = b
+    //   b = tmp
+    //   return [a, b]
+    // }
+    // [a, b] = swap(a, b)
+    // console.log(a, b)
+    //3.封装余额函数
+
+    // let money = 100
+    // let val = 0
+    // let sel = 0
+    // while (sel !== 4) {
+    //   sel = +prompt(`
+    // 请选择操作：
+    // 1. 存钱
+    // 2. 取钱
+    // 3. 查看余额
+    // 4. 退出`)
+    //   check(sel)
+    // }
+    // function check(sel) {
+    //   switch (sel) {
+    //     case 1:
+    //       val = +prompt('input money')
+    //       money += val
+    //       break
+    //     case 2:
+    //       val = +prompt('input money')
+    //       money -= val
+    //       break
+    //     case 3:
+    //       alert(`您的余额为${money}元`)
+    //       break
+    //     default:
+    //       break
+    //   }
+    // }
+
+    //4. 封装 some 函数查看数组是否存在某个元素
+    function some(ele, arr = []) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == ele) {
+          return true;
+        }
+      }
+      return false;
+    }
+    let re = some('荔枝', ['苹果', '香蕉', '橘子', '荔枝', '梨子'])
+    console.log(re) // true
+    let re1 = some('榴莲', ['苹果', '香蕉', '橘子', '荔枝', '梨子'])
+    console.log(re1) // false
+  </script>
+</body>
+
+</html>

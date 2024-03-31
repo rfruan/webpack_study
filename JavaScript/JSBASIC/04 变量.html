@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 变量的声明使用 -->
+  <!-- 变量，先let声明在使用，逗号隔开=赋值 ，一行一个最佳
+    不能用关键字 let var if for ; 
+    只能用下划线，字母，数字，$组成，不能数字开头
+    严格区分大小写
+    最好驼峰命名法-->
+  <script>
+    // 练习1
+    // let uname = prompt('请输入姓名')
+    // let age = 19
+    // console.log(uname, age)
+
+    // 练习2
+    let num1 = 10, num2 = 20
+    console.log(num1, num2)
+    let tmp
+    tmp = num1
+    num1 = num2
+    num2 = tmp
+    console.log(num1, num2)
+
+
+    //练习3
+    // let uname = prompt('输入姓名'), age = prompt('输入年龄'), sex = prompt('输入性别')
+    // document.write('姓名: ' + uname + ' 性别：' + sex + ' 年龄：' + age)
+  </script>
+
+
+  <!-- 2. 多变量 数组 任意类型，中括号，从0开始， -->
+  <script>
+    let week = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    console.log(week[6])
+    console.log(week.length)
+  </script>
+
+  <!-- 3.const 常量  必须初始化，不允许多次赋值,全部大写-->
+  <script>
+    const PI = 3.14
+    console.log('PI=' + PI)
+  </script>
+</body>
+
+</html>

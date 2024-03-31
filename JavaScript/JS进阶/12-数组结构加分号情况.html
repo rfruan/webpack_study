@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 1. 赋值运算符 = 左侧的 [] 用于批量声明变量，右侧数组的单元值将被赋值给左侧的变量
+2. 变量的顺序对应数组单元值的位置依次进行赋值操作
+3. 变量的数量大于单元值数量时，多余的变量将被赋值为  undefined
+4. 变量的数量小于单元值数量时，可以通过 ... 获取剩余单元值，但只能置于最末位
+5. 允许初始化变量的默认值，且只有单元值为 undefined 时默认值才会生效
+
+注：支持多维解构赋值，比较复杂后续有应用需求时再进一步分析
+ -->
+  <script>
+    // 1. 立即执行函数要加
+    // (function () { })();
+    // (function () { })();
+    // 2. 使用数组的时候
+    // const arr = [1, 2, 3]
+    const str = 'pink';
+    [1, 2, 3].map(function (item) {
+      console.log(item)
+    })
+
+    let a = 1
+    let b = 2
+      ;[b, a] = [a, b]
+
+    console.log(a, b)
+  </script>
+</body>
+
+</html>

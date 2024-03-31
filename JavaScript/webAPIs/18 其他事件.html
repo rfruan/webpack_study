@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    padding-top: 100px;
+    height: 3000px;
+  }
+
+  div {
+    position: relative;
+    /* left和top都是针对的父级的定位元素而言的，没有的话就是默认body */
+    /* width和height是不包含padding和border */
+    width: 800px;
+    height: 800px;
+    background-color: pink;
+  }
+</style>
+
+<body>
+  <!-- 1. 页面加载事件 -->
+  <!-- <script>
+    //加载外部资源（如图片、外联CSS和JavaScript等）加载完毕时触发的事件，可以将script 放到前面提前渲染
+    window.addEventListener('load', function () {
+      const d1 = document.getElementsByTagName('div')
+      alert(`${d1}已经在了`)
+    })
+  </script> -->
+
+  <div class="d1">
+    <p>我里面有很多很多的文字</p><br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    我里面有很多很多的文字<br>
+    <textarea name="" id="" cols="10" rows="10">
+      我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红我是赫敏红
+    </textarea>
+  </div>
+  <!-- 2. 元素滚动事件 -->
+  <script>
+    //滚动条在滚动的时候持续触发的事件
+    window.addEventListener('scroll', function (e) {
+      //scrollTop,scrollLeft 获取元素内容往左、往上滚出去看不到的距离
+      // console.log(document.documentElement.scrollTop)
+      //
+      const len = document.documentElement.scrollTop
+      if (len >= 100) {
+        document.querySelector('div').style.display = 'none'
+      } else {
+        document.querySelector('div').style.display = 'block'
+
+      }
+    })
+    document.querySelector('textarea').addEventListener('scroll', function (e) {
+
+      console.log('move' + this.scrollTop)// 读写型， 值为数字型 不带单位
+    })
+
+
+  </script>
+  <!-- 3. 页面尺寸事件 -->
+  <script>
+    const div = document.querySelector('div')
+    console.log(div.clientWidth)// 获取div 可见内容的宽度，这里div包括了 width+padding，其余距离排除
+    // resize事件 改变浏览器尺寸
+    window.addEventListener('resize', function () {
+      //当我放缩窗口会调用，但是div在浏览器的位置是不变的，是相对的关系
+      console.log(div.offsetTop)
+    })
+
+  </script>
+  <!-- 4. 获取页面尺寸和位置 -->
+  <script>
+    const p = document.querySelector('p')
+    // console.log(div.offsetLeft) 只读型
+    // 检测盒子的位置  最近一级带有定位的祖先元素 当没有指定position位置时，是到页面的距离，当相对定位确定了div位置就是到div的距离
+    console.log(p.offsetLeft)//元素可见的宽度，包括 width、padding、border 以及滚动条的宽度
+
+  </script>
+
+  <!-- 5. 获取元素位置的其他方法 -->
+  <script>
+    console.log(div.getBoundingClientRect().height) //这是相对整个窗口的，不是页面
+    //获取元素距离自己定位父级元素的左、上距离
+    // offsetLeft 和 offsetTop 注意是只读属性
+  </script>
+
+  <!-- 获取的是可视宽高, 如果盒子是隐藏的,获取的结果是0 -->
+</body>
+
+</html>

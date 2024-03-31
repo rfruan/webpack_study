@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 构造函数用于创建对象，用new调用，函数名首字母大写，没有return但会返回新创建对，实例化构造函数时没有参数时可以省略 ()，构造函数内部的 return 返回的值无效，所以不要写return 
+-->
+
+  <script>
+    function Goods(name, price, count) {
+      // 实例属性和方法
+      this.name = name
+      this.price = price
+      this.count = count
+      this.show = function () {
+        console.log(this.name, this.price, this.count)
+      }
+
+    }
+
+    const xiaomi = new Goods('xiaomi', 1999, 20)
+    const huawei = new Goods('huawei', 3999, 59)
+    const vivo = new Goods('vivo', 1888, 100)
+    xiaomi.show()
+    huawei.show()
+    vivo.show()
+
+    const nonparam = new Goods //可以省略(),属性值权威undefined
+    console.log(nonparam)
+    // 静态属性和方法加载了构造函数上
+    Goods.nation = 'china'
+
+    Goods.sayHi = function () {
+      //静态成员方法中的 this 指向构造函数本身,一般公共特征的属性或方法静态成员设置为静态成员
+      console.log(this.nation)
+      console.log('static method')
+    }
+
+    //可以未创建对象时调用
+    Goods.sayHi()
+
+    console.log(Object.keys(xiaomi)) //返回数组的key
+    console.log(Object.values(xiaomi))//返回name
+
+    //复制对象
+    const o = {}
+    Object.assign(o, xiaomi)
+    console.log(o)
+    Object.assign(o, { gender: 'male' }) //追加新属性
+    console.log(o)
+
+  </script>
+
+</body>
+
+</html>

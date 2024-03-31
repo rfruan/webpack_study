@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 3种方式实现深拷贝 -->
+  <script>
+    //递归
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: '小pink'
+      }
+    }
+    const o = {}
+    function deepclone(newo, oldo) {
+      for (let k in oldo) {
+        if (oldo[k] instanceof Array) {
+          newo[k] = []
+          deepclone(newo[k], oldo[k])
+        } else if (oldo[k] instanceof Object) {
+          newo[k] = {}
+          deepclone(newo[k], oldo[k])
+
+        } else {
+          newo[k] = oldo[k]
+        }
+      }
+    }
+    deepclone(o, obj)
+    o.age = 20
+    console.log(o)
+    console.log(obj)
+
+  </script>
+
+  <script src="./js/lodash.min.js">
+  </script>
+  <script>
+    //lodash
+    const o1 = _.cloneDeep(obj)
+    o1.age = 21
+    console.log(o1)
+    console.log(obj)   
+  </script>
+
+  <script>
+    //json
+    const o2 = JSON.parse(JSON.stringify(obj))
+    o1.age = 22
+    console.log(o1)
+    console.log(obj)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. Array
+    // const arr = new Array([1, 2, 3, 5, 9])
+    const arr = [1, 2, 3, 5, 9]
+    // console.log(arr)
+    // 遍历
+    // arr.forEach(ele => console.log(ele))
+
+    // 筛选,必须是数组类型,而不是数组对象Array
+    const fil = arr.filter(function (ele, index) {
+      // console.log(ele)
+      return ele >= 5
+    })
+    console.log(fil)
+
+    // 处理
+    console.log(
+      arr.map(ele => ele + 10).join('/')
+    )
+    // 累积
+    const sum = arr.reduce((prev, current) => prev + current)
+    console.log(sum)
+
+    // 有初始值
+    const initsum = arr.reduce((prev, current) => prev + current, 10)
+    console.log(initsum)
+
+    //其他方法
+    console.log(arr.find(ele => ele > 3))  //找到第一个符合条件的元素值并输出
+    console.log(arr.every(ele => ele >= 5)) //false 每一个元素都要符合条件
+    console.log(arr.some(ele => ele < 4))//检测数组是否含有符合条件的元素,有返回true
+    console.log(arr.concat(arr)) //链接两个数组,拼接成新数组
+    console.log(arr.sort((pre, current) => current - pre)) //降序
+    console.log(arr)
+    const removeNum = arr.splice(1, 1, 2, 3, 4) //统计变动的个数
+    console.log(arr)
+    console.log(arr.reverse()) //翻转
+    console.log(arr.findIndex(el => el == 9)) //返回索引
+  </script>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

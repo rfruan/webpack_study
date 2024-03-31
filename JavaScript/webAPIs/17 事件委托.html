@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  ul {
+    list-style: none;
+  }
+
+  .active {
+    color: red;
+  }
+</style>
+
+<body>
+  <!-- 事件委托一般给父元素，减少循环次数和监听事件，提升程序效率 -->
+  <ul class="btnlist">
+    <li><button class="active"> 我是按钮1 </button></li>
+    <li><button> 我是按钮2 </button></li>
+    <li><button> 我是按钮3 </button></li>
+    <li><button> 我是按钮4 </button></li>
+    <li>
+      <p>我才不变色</p>
+    </li>
+  </ul>
+  <button type="submit">提交不生效</button>
+  <a href="http://www.baidu.com">internet</a>
+  <script>
+    //原版监听事件
+    // const list = document.querySelectorAll('button')
+    // for (let i = 0; i < list.length; i++) {
+    //   list[i].addEventListener('click', function () {
+    //     document.querySelector('.active').classList.remove('active')
+    //     this.classList.add('active')
+    //   })
+    // }
+    // 委托事件
+    const ul = document.querySelector('ul')
+    ul.addEventListener('click', function (e) {
+      // 用事件获取信息和标签 
+      console.log(e.srcElement) //真正触发事件的元素
+      if (e.target.tagName === 'BUTTON') {
+        document.querySelector('.active').classList.remove('active')
+        e.target.classList.add('active')
+      }
+    })
+  </script>
+  <script>
+    //阻止默认行为 preventDefault()
+    document.querySelector('a').addEventListener('click', function (e) {
+      e.preventDefault()//这样就不会跳转链接
+    })
+    //用到了属性选择器
+    document.querySelector('button[type=submit]').addEventListener('click', function (e) {
+      console.log('click  ')
+      e.preventDefault()//这样就不会跳转链接
+    })
+  </script>
+</body>
+
+</html>

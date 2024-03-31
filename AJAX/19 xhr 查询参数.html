@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XMLHttpRequest_查询参数</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：使用XHR携带查询参数，展示某个省下属的城市列表
+    */
+    const xhr = new XMLHttpRequest()
+    xhr.open('get', 'https://hmajax.itheima.net/api/city?pname=辽宁省')
+    xhr.addEventListener('loadend', () => {
+      console.log(xhr.response)
+      document.body.innerHTML = (JSON.parse(xhr.response)).list.map(e => e).join('<br>')
+    })
+    xhr.send()
+  </script>
+</body>
+
+</html>

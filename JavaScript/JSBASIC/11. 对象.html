@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<style>
+  /* * {
+    background-color: #000;
+  } */
+
+  div {
+    width: 500px;
+    margin: 30px auto;
+    /* background-color: pink; */
+    box-sizing: border-box;
+  }
+
+  img {
+    float: left;
+    margin-bottom: 20px;
+    width: 100px;
+  }
+
+  img:hover {
+    animation: move 1.5s forwards;
+  }
+
+
+  @keyframes move {
+    0% {}
+
+    100% {
+      transform: scale(1.3);
+    }
+
+  }
+</style>
+
+<body>
+
+
+
+  <!-- 对象，有属性和方法 无论是属性或是方法，同一个对象中出现名称一样的，后面的会覆盖前面的
+  null 也是 JavaScript 中数据类型的一种，通常只用它来表示不存在的对象。使用 typeof 检测类型它的类型时，结果为 object。-->
+  <script>
+    //声明 和 赋值
+
+
+    let user = {
+      uname: 'rf',
+      uage: 18,
+
+      //方法是由方法名和函数两部分构成，它们之间使用 : 分隔， 方法名可以使用 "" 或 ''，一般情况下省略，除非名称遇到特殊符号如空格、中横
+      run: function (speed) {
+        console.log(`speed is ${speed}`)
+      }
+    }
+    let user1 = new Object()
+
+
+
+    //调用属性，使用 . 或 [] 获得对象中属性对应的值
+    console.log(user.uage)
+    console.log(user['uname']) //必须用字符串形式
+    //调用方法，可以使用 . 或 [] 调用对象中函数
+    user.run(5)
+
+    //修改新增属性，动态为对象添加属性
+    user['age'] = 16
+    user.uname = 'pc'
+    user.weight = 180
+    user['height'] = 180
+    //动态为对象添加方法
+    user['sing'] = function (song) {
+      console.log(`singing a song ${song}`)
+    }
+
+    //遍历输出数组
+    for (let k in user) {
+      console.log(k)  //k是字符串型属性名
+      console.log(user[k]) //方法也会输出
+    }
+
+    user.sing('abc')
+  </script>
+
+  <script>
+    //内置对象，介绍Math
+    //Math.PI，获取圆周率
+    console.log(Math.PI)  //
+    //Math.random，生成 0 到 1 间的随机数，生成N,M之间的随机数
+    console.log(Math.random())
+    // console.log(Math.random()*(M-N+1)+N)  
+    //Math.ceil，数字向上取整
+    console.log(Math.ceil(3.4))  //4
+    //Math.floor，数字向下取整
+    console.log(Math.floor(4.68))  //4
+    // Math.round，四舍五入取整
+    console.log(Math.round(5.46539))  //5, Math.round(-4.5) ==>-4
+    //Math.max，在一组数中找出最大的
+    console.log(Math.max(10, 21, 7, 24, 13))  //24
+    //Math.min，在一组数中找出最小的
+    console.log(Math.min(10, 21, 7, 24, 13))  //7
+    //Math.pow，幂方法
+    console.log(Math.pow(4, 2))  //16
+    //Math.sqrt，平方根
+    console.log(Math.sqrt(16))  //4
+
+
+
+  </script>
+
+  <!-- 练习 -->
+  <script>
+    // //1.每次刷新网页运行, 在控制台 随机输出一位同学的名字 ["老赵", "老李", "小传", "小黑"]，如果输出了，则数组中删除这个名字
+    // let arr = ["老赵", "老李", "小传", "小黑"]
+
+    // let k = parseInt(Math.random() * (arr.length))
+    // document.write(arr[k])
+    // arr.splice(k, 1)
+
+    // //2. 对象的声明
+    // let per = {
+    //   sex: '女',
+    //   age: 18,
+    //   hobby: 'reading',
+    //   talk: function () {
+    //     console.log('she is talking')
+    //   },
+    //   eat: function () {
+    //     console.log('eating')
+    //   }
+    // }
+    // per.talk()
+    // per.eat()
+    // for (let k in per) {
+    //   console.log(per[k])
+    // }
+
+    // 3. 猜数字游戏，设定次数，最多猜8次
+    // function random(min, max) {
+    //   return Math.random() * (max - min + 1) + min
+    // }
+    // // 生成一个数字先,猜0-20之间的数
+    // let num = Math.floor(random(0, 20))
+    // let i = 1;
+    // while (i <= 8) {
+    //   let guess = +prompt('input num')
+    //   let k = 8 - i
+    //   console.log(k)
+    //   if (guess > num) {
+    //     alert(`大了，还有${k}次`)
+    //   } else if (num > guess) {
+    //     alert(`小了，还有${k}`)
+    //   } else {
+    //     alert('猜对了')
+    //     break
+    //   }
+    //   i++
+    // }
+
+
+  </script>
+
+  <!-- <script>
+    //4.利用对象数组渲染英雄列表案例
+    let datas = [
+      { name: '司马懿', imgSrc: '01.jpg' },
+      { name: '女娲', imgSrc: '02.jpg' },
+      { name: '百里守约', imgSrc: '03.jpg' },
+      { name: '亚瑟', imgSrc: '04.jpg' },
+      { name: '虞姬', imgSrc: '05.jpg' },
+      { name: '张良', imgSrc: '06.jpg' },
+      { name: '安其拉', imgSrc: '07.jpg' },
+      { name: '李白', imgSrc: '08.jpg' },
+      { name: '阿珂', imgSrc: '09.jpg' },
+      { name: '墨子', imgSrc: '10.jpg' },
+      { name: '鲁班', imgSrc: '11.jpg' },
+      { name: '嬴政', imgSrc: '12.jpg' },
+      { name: '孙膑', imgSrc: '13.jpg' },
+      { name: '周瑜', imgSrc: '14.jpg' },
+      { name: 'XXX', imgSrc: '15.jpg' },
+      { name: 'XXX', imgSrc: '16.jpg' },
+      { name: 'XXX', imgSrc: '17.jpg' },
+      { name: 'XXX', imgSrc: '18.jpg' },
+      { name: 'XXX', imgSrc: '19.jpg' },
+      { name: 'XXX', imgSrc: '20.jpg' }
+    ]
+    document.write('<div>')
+
+    for (let k in datas) {
+      document.write(`<img src="images/${datas[k].imgSrc}" title="${datas[k].name}"  >`)
+    }
+    document.write('</div>')
+
+  </script> -->
+
+  <!-- 根据数据完成表格渲染 -->
+  <script>
+    let data = [
+      { subject: '语文', score: 46 },
+      { subject: '数学', score: 80 },
+      { subject: '英语', score: 100 },
+    ]
+    let tr = ''
+    let total = 0 // 计算总分
+    for (let i = 0; i < data.length; i++) {
+      tr += `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${data[i].subject}</td>
+            <td>${data[i].score}</td>
+            <td><a href="#">删除</a></td>
+        </tr>
+      `
+      total += data[i].score
+    }
+
+    document.write(`
+    <div id="app" class="score-case">
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>科目</th>
+              <th>成绩</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tr}
+          </tbody>
+          <tbody>
+            <tr>
+              <td colspan="5">
+                <span class="none">暂无数据</span>
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                <span>总分：${total}</span>
+                <span style="margin-left: 50px">平均分：${total / data.length}</span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+    </div>
+    `)
+  </script>
+</body>
+
+</html>

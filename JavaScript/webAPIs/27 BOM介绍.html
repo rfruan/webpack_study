@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    position: relative;
+    margin: auto 50%;
+    left: -100px;
+  }
+</style>
+
+<body>
+  <!-- BOM 是浏览器对象模型，包括document和其他组件 
+  1.window 是一个全局对象，js顶级对象，document,alert()等都是window的属性或方法，只不过用的时候省略了window引用
+  2. 所有通过var定义的全局遍历，函数都会变成window的对象
+  3. window对象下的属性和方法调用的时候可以省略window -->
+
+  <!-- 1. 延时定时器，表示延时秒数后执行 
+    仅仅执行一次，平时省略window ，属于BOM 
+    延时器需要等待，后面的代码会先执行，每一次调用延时器都会产生一个新的延时器，返回的是延时器的id
+    间歇函数定时器setInterval是每隔多少秒执行一次，除非手动清除-->
+
+  <img src="images/ad.png" alt="">
+  <p>5</p>
+  <script>
+    //延时5秒关闭
+    let timer = setTimeout(function () {
+      document.querySelector('img').style.display = 'none'
+    }, 5000)
+    let num = 4
+    setInterval(function () {
+      document.querySelector('p').innerHTML = ''
+      if (num > 0)
+        document.querySelector('p').innerHTML = `${num--}`
+    }, 1000)
+    clearTimeout(timer) //清除延时器
+  </script>
+
+  <!-- js执行机制 -->
+  <!-- js语言只能单线程，必须上一个任务结束才能下一个任务，导致一旦js时间执行过长，页面渲染不连贯，导致页面渲染加载阻塞 -->
+  <!-- 为解决单线程问题，js可以创建多线程，分为同步和异步 -->
+  <!-- 同步：前一个任务结束后再执行后一个任务，程序的执行顺序与任务的排列顺序是一致的、同步的,同步任务都在主线程上执行，形成一个执行栈 -->
+  <!-- 异步：做某个任务的同时去处理其他事务,JS 的异步是通过回调函数实现,包括普通事件,资源加载和定时器,会将异步任务添加到任务队列里,以便调取 -->
+  <!-- 本质：流水线上各任务执行顺序不同 -->
+  <!-- js执行过程: 先执行执行栈中的同步任务,当同步任务执行完毕,按次序读取任务队列的异步任务 -->
+  <!-- 事件循环: 主线程不断的重复获得任务、执行任务、再获取任务、再执行的机制 -->
+</body>
+
+</html>

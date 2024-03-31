@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    width: 700px;
+    margin: 100px auto;
+  }
+
+  img {
+    width: 104px;
+    border: 2px solid skyblue;
+    border-radius: 10px 0px;
+  }
+</style>
+
+<body>
+
+
+
+  <script>
+    //1. 数组声明 ，可以是不同类型
+    let arr = [1, 2, 3, 4, 5]
+    let arr1 = new Array(1, 2, 4, 5)
+    console.log(arr, arr1)
+    //2. 数组查找靠索引
+    console.log(arr[0])
+    console.log(arr.length)
+    console.log(arr[arr.length])//undefined
+    //3. 数组增加
+    let arr2 = []
+    console.log(arr2)
+    arr2[2] = '2'
+    console.log(arr2[0]) //undefined ，arr[2]='2'
+
+    //3.1 尾部增加一个或多个
+    arr2.push('21', 123) //返回新数组长度
+    console.log(arr2)
+    //3.2 头部增加一个或多个
+    arr2.unshift('adsa', true)//返回新数组长度
+    console.log(arr2)
+
+    //4. 数组修改
+    arr2[0] = 'srfsfse'
+    console.log(arr2)
+    arr2[3] = 4846
+    arr2[2] = 'adsa'
+    console.log(arr2)
+
+    //5. 数组删除,一次只能删除一个,返回删除的元素
+    //5.1 头部删除
+    arr2.shift()
+    console.log(arr2)
+    //5.2 尾部删除
+    arr2.pop()
+    console.log(arr2)
+    //5.3 任意位置删除，起始位置，删除个数
+    arr2.splice(2, 1)
+    console.log(arr2)
+
+    //splice(起始位置，删除个数，添加数组元素)
+    arr2.splice(1, 1, 'pink', 'hotpink')// 在索引号是1的位置先删除一个再添加 pink  hotpink
+    console.log(arr2)
+
+    //冒泡排序
+    arr = [1, 516, 163, 48, 65, 7, 1, 2, 3, 5, 97]
+    console.log(arr)
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = i + 1; j < arr.length - 1; j++) {
+        if (arr[i] >= arr[j]) {
+          let tmp = arr[i]
+          arr[i] = arr[j]
+          arr[j] = tmp
+        }
+      }
+    }
+    console.log(arr)
+    // 自定义升序
+    arr = [1, 516, 163, 48, 65, 7, 1, 2, 3, 5, 97]
+    arr.sort(function (a, b) {
+      return a - b
+    })
+    console.log(arr)
+
+    //降序
+    arr.sort(function (a, b) {
+      return b - a
+    })
+    console.log(arr)
+
+
+
+  </script>
+
+  <!-- 需求：根据用户输入的个数，页面可以渲染对应王者荣耀永雄的个数-->
+  <script>
+    // let num = +prompt('input number')
+    // while (num > 20) {
+    //   num = +prompt('input number')
+    // }
+    // document.write('<div>')
+    // for (let i = 1; i <= num; i++) {
+    //   document.write(`<img src="./images/${i}.webp" alt="">`)
+    // }
+    // document.write('</div>')
+  </script>
+
+</body>
+
+</html>

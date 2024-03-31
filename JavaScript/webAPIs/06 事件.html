@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 500px;
+      height: 500px;
+      background-color: red;
+
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 事件  用来描述程序的行为或状态的，一旦行为或状态发生改变，便立即调用一个函数-->
+  <button class="btn">点击</button>
+  <div id="box"></div>
+  <label for="i1">shuru: <input type="text" id="i1"> </label>
+
+
+  <script>
+    // 1. 事件监听，addEventListener 是 DOM 对象专门用来添加事件监听的方法，它的两个参数分别为【事件类型】和【事件回调】,【事件处理程序,回调】决定了事件触发后应该执行的逻辑。
+    //获取对象
+    const btn = document.querySelector('button')
+    console.log(btn)
+    //监听
+    btn.addEventListener('click', function () {
+      this.disabled = true
+      console.log('已点击')
+    })
+
+    //鼠标事件， 单击click 双击dblclick
+    btn.addEventListener('dblclick', function () {
+      //环境对象指的是函数内部特殊的变量 this ，谁调用 this 就是谁，数据类型为对象 函数直接调用时实际上 window.fun()
+      alert('这是双击')
+      this.style.color = 'red'
+    })
+
+    //2. 事件类型 
+    //`mouseenter 监听鼠标是否移入 DOM 元素
+    const box = document.getElementById('box')
+    // const box = document.querySelector('#box')
+    console.log(box)
+    box.addEventListener('mouseenter', function () {
+      console.log('鼠标移入悬浮聚焦了')
+    })
+    //`mouseleave 监听鼠标是否移出 DOM 元素
+    box.addEventListener('mouseleave', function () {
+      console.log('鼠标移出失焦了')
+    })
+    // 键盘事件
+    //keydown   键盘按下触发
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        //3. 任意事件类型被触发时与事件相关的信息会被以对象的形式记录下来，
+        // 事件回调函数的【第1个参数】即所谓的事件对象，通常习惯性的将这个对数命名为 event、ev 、ev
+        //3.1. ev.type 当前事件的类型
+        //3.2. ev.clientX/Y 光标相对浏览器窗口的位置
+        //3.3. ev.offsetX/Y 光标相于当前 DOM 元素的位置 
+        //可以展开查看
+        console.log(e.key)
+      }
+    })
+    //keyup   键盘抬起触发
+    document.addEventListener('keyup', function (e) {
+      if (e.key === ' ') {
+        console.log('空格')
+      }
+    })
+
+    //焦点事件，常用于表单
+    //focus 获得焦点 blur失去焦点
+    const input = document.querySelector('input')
+    input.addEventListener('focus', function () {
+      console.log('表单获得焦点')
+    })
+    input.addEventListener('blur', function () {
+      console.log('表单失去焦点')
+    })
+    //文本框输入事件 input
+    input.addEventListener('input', function (e) {
+      console.log(this.value)
+    })
+    //1. 回调函数本质还是函数，只不过把它当成参数使用
+    //2. 使用匿名函数做为回调函数比较常见
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

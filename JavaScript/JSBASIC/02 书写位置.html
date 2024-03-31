@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  button {
+    width: 100px;
+    height: 40px;
+  }
+</style>
+
+<body>
+  <!-- 内部js 最好放置在body底部,从上往下依次执行，内部js，外部js，点击后内联js-->
+  <script>
+    alert('内部js')
+  </script>
+  <!-- 内联js -->
+  <button onclick="alert('内联js')">内联</button>
+  <!-- 外部引入js,中间不要写代码，会被忽略 -->
+  <script src="./js/out.js"></script>
+</body>
+
+</html>

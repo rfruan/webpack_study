@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数据存储在用户浏览器中会先存储一些, 设置、 读取方便、 甚至页面刷新不丢失数据, 容量较大， sessionStorage和localStorage约 5M 左右 -->
+  <script>
+    // 存储是字符串,会隐式转换
+    // 对象存储需要用到json,JSON.stringify(复杂数据类型) 存储;JSON.parse(JSON字符串) 读取
+    /*  1. localStorage 把数据存储在浏览器中,将数据永久存储在本地(用户的电脑), 除非手动删除， 否则关闭页面也会存在
+     可以多窗口（ 页面） 共享（ 同一浏览器可以共享）
+  以键值对的形式存储使用 */
+    /*   localStorage.setItem(key, value) 增改
+      localStorage.getItem(key)  查
+      localStorage.removeItem(key) 删
+     */
+    // 2. sessionStorage
+    // 特性：生命周期为关闭浏览器窗口; 在同一个窗口(页面)下数据可以共享; 以键值对的形式存储使用;用法跟localStorage 基本相同
+  </script>
+</body>
+
+</html>

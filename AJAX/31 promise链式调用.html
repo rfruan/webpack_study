@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise_链式调用</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：掌握Promise的链式调用
+     * 需求：把省市的嵌套结构，改成链式调用的线性结构
+     * 1. 依靠 then() 方法会返回一个新生成的 Promise 对象特性，继续串联下一环任务，直到结束
+       2. 细节：then() 回调函数中的返回值，会影响新生成的 Promise 对象最终状态和结果
+       3. 好处：通过链式调用，解决回调函数嵌套问题
+    */
+    const p = new Promise((resovle, reject) => {
+      setTimeout(() => { resovle('北京市') }, 2000)
+    })  //返回省
+    const p2 = p.then(res => {
+      //成功执行就会返回北京市
+      const pname = res
+      //返回新对象p
+      return new Promise((resovle, reject) => {
+        setTimeout(() => resovle(res + '------北京'), 2000)
+      })
+    })
+
+    p2.then(res => {
+      //北京市---北京
+      console.log(res)
+    })
+
+    console.log(p2 === p) //false p2是p的then 产生的新对象
+
+  </script>
+</body>
+
+</html>

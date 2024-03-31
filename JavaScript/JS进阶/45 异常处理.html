@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 异常会中止程序
+  1. throw 抛出异常信息，程序也会终止执行
+2. throw 后面跟的是错误提示信息
+3. Error 对象配合 throw 使用，能够设置更详细的错误信息
+ -->
+
+  <script>
+    function add(x, y) {
+      if (!x || !y) { throw new Error('没有赋值') }
+      return x + y
+    }
+    add()
+  </script>
+
+  <!-- try /catch 捕获异常 
+  1. try...catch 用于捕获错误信息
+2. 将预估可能发生错误的代码写在 try 代码段中
+3. 如果 try 代码段中出现错误后，会执行 catch 代码段，并截获到错误信息
+4. finally 不管是否有错误，都会执行
+  -->
+
+  <script>
+    function fn() {
+      try {
+        // 可能发送错误的代码 要写到 try
+        const p = document.querySelector('.p')
+        p.style.color = 'red'
+      } catch (err) {
+        // 拦截错误，提示浏览器提供的错误信息，但是不中断程序的执行
+        console.log(err.message)
+        throw new Error('你看看，选择器错误了吧')
+        // 需要加return 中断程序
+        // return
+      }
+      finally {
+        // 不管你程序对不对，一定会执行的代码
+        alert('弹出对话框')
+      }
+      console.log(11)
+    }
+    fn()
+  </script>
+
+</body>
+
+</html>

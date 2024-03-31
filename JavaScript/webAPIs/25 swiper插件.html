@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<!-- Demo styles -->
+<style>
+  html,
+  body {
+    position: relative;
+    height: 100%;
+  }
+
+  body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+</style>
+
+<body>
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <button class="swiper-button-next"></button>
+    <button class="swiper-button-prev"></button>
+  </div>
+  <!-- 应用插件选择好看的图表等组件 -->
+  <!-- 熟悉官网,了解这个插件可以完成什么需求 https://www.swiper.com.cn/
+    看在线演示,找到符合自己需求的demo https://www.swiper.com.cn/demo/index.html
+    查看基本使用流程 https://www.swiper.com.cn/usage/index.html
+    查看APi文档,去配置自己的插件 https://www.swiper.com.cn/api/index.html
+    注意: 多个swiper同时使用的时候, 类名需要注意区分 -->
+  <!-- Initialize Swiper -->
+  <script src="js/swiper.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      paginationClickable: true,
+      loop: true, // 循环模式选项
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+</body>
+
+</html>

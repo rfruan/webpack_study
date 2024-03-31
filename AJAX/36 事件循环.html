@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环_练习</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 目标：阅读并回答执行的顺序结果
+    */
+    console.log(1)
+    setTimeout(() => {
+      console.log(2)
+    }, 0)
+    function myFn() {
+      console.log(3)
+    }
+    function ajaxFn() {
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', 'http://hmajax.itheima.net/api/province')
+      xhr.addEventListener('loadend', () => {
+        console.log(4)
+      })
+      xhr.send()
+    }
+    for (let i = 0; i < 1; i++) {
+      console.log(5)
+    }
+    ajaxFn()
+    document.addEventListener('click', () => {
+      console.log(6)
+    })
+    myFn()
+
+    // 输出： 1 5 3 2 4 
+
+    /* 事件循环负责执行代码，收集和处理事件以及执行队列中的子任务
+    JavaScript 单线程（某一刻只能执行一行代码），为了让耗时代码不阻塞其他代码运行，设计了事件循环模型
+    执行代码和收集异步任务的模型，在调用栈空闲，反复调用任务队列里回调函数的执行机制，就叫事件循环
+     */
+  </script>
+</body>
+
+</html>

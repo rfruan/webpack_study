@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环经典_经典面试题4</title>
+</head>
+
+<body>
+  <script>
+    // Twitter面试题-20%答对
+    //使用的Promise对象是立即resolved的，因此在主线程中执行，不会引起微任务，也就不会有then方法中的回调函数被调用。相反，它们会被推迟到下一个事件循环中执行。因此，即使点击了页面，控制台也不会立即输出结果。
+    //如果想要在点击事件后立即输出结果，可以将Promise对象的resolve放在一个setTimeout中，这样可以将其推迟到下一个事件循环中执行。
+    document.body.addEventListener('click', () => {
+      const p1 = new Promise(resolve => resolve(1))
+      p1.then(result => console.log(result))
+      console.log(2)
+    })
+    document.body.addEventListener('click', () => {
+      // console.log(4)
+      // let p = new Promise((resolve, reject) => resolve(3))
+      // p.then(result => console.log(result))
+      console.log(4)
+    })
+    //没有输出，事件绑定无效
+  </script>
+</body>
+
+</html>

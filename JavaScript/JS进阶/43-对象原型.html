@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     每个原型对象里面都有个constructor 属性（constructor 构造函数）
+    
+    作用：该属性指向该原型对象的构造函数， 简单理解，就是指向我的爸爸，我是有爸爸的孩子
+    
+    使用场景：
+    
+    如果有多个对象的方法，我们可以给原型对象采取对象形式赋值.
+    
+    但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象 constructor 就不再指向当前构造函数了
+    
+    此时，我们可以在修改后的原型对象中，添加一个 constructor 指向原来的构造函数。
+    
+    
+    
+    
+    
+    对象都会有一个属性 proto 指向构造函数的 prototype 原型对象，之所以我们对象可以使用构造函数 prototype 
+    
+    原型对象的属性和方法，就是因为对象有 proto 原型的存在。
+    
+    注意：
+    
+    - proto 是JS非标准属性
+    - [[prototype]]和__proto__意义相同
+    - 用来表明当前实例对象指向哪个原型对象prototype
+    - proto对象原型里面也有一个 constructor属性，指向创建该实例对象的构造函数
+    
+    */
+
+    function Star() {
+
+    }
+    const ldh = new Star()
+    // 对象原型__proto__ 指向 改构造函数的原型对象
+    console.log(ldh.__proto__)
+    // console.log(ldh.__proto__ === Star.prototype)
+    // 对象原型里面有constructor 指向 构造函数 Star
+    console.log(ldh.__proto__.constructor === Star)
+
+  </script>
+</body>
+
+</html>

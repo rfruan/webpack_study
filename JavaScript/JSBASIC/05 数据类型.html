@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 基本数据类型： 数字number，布尔boolean，空null，字符串string，未定义undefined  -->
+  <!-- 1.1 number 弱数据类型，赋值才知道类型，与算术运算符使用+-*/% , NaN是数值型-->
+  <script>
+    // let radius = prompt('输入圆的半径')
+    // const PI = 3.14
+    // let square = PI * radius * radius
+    // console.log(square)
+    //NaN 计算错误，任何对NaN的操作都是NaN
+  </script>
+
+  <!-- 1.2 string 单引号 双引号 反引号成对 -->
+  <script>
+    let uname = 'rf'
+    document.write(`我叫${uname}`) //反引号设置模板字符串
+  </script>
+
+  <!-- 1.3 boolean 只有true false
+  1.4 null 空 可以数值运算，相当于0
+  1.5 undefined 未定义，不能数值运算，结果NaN -->
+  <script>
+    let a = true
+    let b = null //用于先存放一个object 对象
+    let c = undefined
+    console.log(a, b + 1, undefined + 1) //true，1，NaN
+    // 2. 检测数据类型  typeof 或者 typeof()  表单，输入传入的都是字符串类型，不能直接进行相加操作
+    console.log(typeof a)
+    console.log(typeof b)//object
+    console.log(typeof c)
+    let d
+    console.log(typeof (d))//undefined 
+  </script>
+
+  <!-- 3. 隐式转换和强制转换 -->
+  <script>
+    //隐式转换，任何数据与字符串相加为字符串，+-可以作为符号转换字符串为数值
+    console.log(typeof +'123')
+    console.log(typeof ('11' - 11), '11' - 11)
+    console.log(typeof (11 + '11'), (11 + '11'))
+    console.log(typeof (11 - '11'), (11 - '11'))
+    //显示转换  Number() parseInt()只保留整数， parseFloat保留小数)
+  </script>
+
+
+
+</body>
+
+</html>

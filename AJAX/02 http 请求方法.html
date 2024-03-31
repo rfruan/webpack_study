@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- http 对服务器的请求方法 ,method 不区分大小写
+  GET 获取数据 params 
+POST 数据提交 data对象
+PUT 修改数据（全部）
+DELETE 删除数据
+PATCH 修改数据（部分） -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- //首次注册可以，再次注册报错 -->
+  <script>
+    axios({
+      url: 'http://hmajax.itheima.net/api/register',
+      method: 'post',
+      data: {
+        username: 'rf875安定6',
+        password: '123456'
+      }
+    }).then(res => {
+      console.log(res.data.code)  //状态码
+      //成功的话会有  code+message
+      //输出错误信息
+    }).catch(e => {//在 then 方法的后面，通过点语法调用 catch 方法，传入回调函数并定义形参
+      console.log(e.response.data.message) //可以输出详细信息
+    })
+  </script>
+
+
+
+
+  <!-- http 报文 
+HTTP 协议：规定了浏览器发送及服务器返回内容的格式
+请求报文：浏览器按照 HTTP 协议要求的格式，发送给服务器的内容
+请求报文的组成部分有:
+1. 请求行：请求方法，URL，协议
+2. 请求头：以键值对的格式携带的附加信息，比如：Content-Type
+3. 空行：分隔请求头，空行之后的是发送给服务器的资源
+4. 请求体：发送的资源
+
+响应报文：服务器按照 HTTP 协议要求的格式，返回给浏览器的内容
+1. 响应行（状态行）：协议、HTTP 响应状态码、状态信息
+2. 响应头：以键值对的格式携带的附加信息，比如：Content-Type
+3. 空行：分隔响应头，空行之后的是服务器返回的资源
+4. 响应体：返回的资源
+
+常见的状态码
+    1xx 信息
+    2xx 成功
+    3xx 重定向消息
+    4xx 客户端错误，404（服务器找不到资源）
+    5xx 服务端错误
+-->
+</body>
+
+</html>

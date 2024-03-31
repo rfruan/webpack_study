@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="http://www.baidu.com">支付将在5秒后自动跳转首页</a>
+  <script>
+    //location对象是BOM 对象,属于window,href属性常用于跳转页面
+    let num = 5
+    let time = setInterval(function () {
+      //5秒倒计时
+      num--
+      if (num > 0) {
+        document.querySelector('a').innerHTML = `支付将在${num}秒后自动跳转首页`
+      } else {
+        clearInterval(time)
+        location.href = document.querySelector('a').href
+      }
+    }, 1000)
+    //search 属性返回的是url 后面的?带的参数部分
+    //hash 属性获取地址中的哈希值,#后面的部分,经常用于不刷新页面， 显示不同页面
+    //reload 方法用于刷新f5  页面,传入参数为true表示强制刷新ctrl+f5
+  </script>
+</body>
+
+</html>

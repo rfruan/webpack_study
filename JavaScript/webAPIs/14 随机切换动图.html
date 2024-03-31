@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    margin-left: 5px;
+    width: 400px;
+
+  }
+
+  button {
+    width: 50px;
+    height: 28px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 28px;
+  }
+
+  img {
+    width: 380px;
+    height: 320px;
+  }
+</style>
+
+<body>
+  <div>
+    <button>切换</button>
+    <img src="images/01.gif" alt="">
+  </div>
+</body>
+<script>
+  const btn = document.querySelector('button')
+  btn.addEventListener('click', function () {
+    let num = Math.floor(Math.random() * 6 + 1)
+    if (num === 1 || num == 2)
+      document.querySelector('img').src = `images/0${num}.gif`
+    else
+      document.querySelector('img').src = `images/${num}.jpg`
+  })
+</script>
+
+</html>

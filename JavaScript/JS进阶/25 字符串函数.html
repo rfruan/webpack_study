@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const str = "A string primitive"
+    console.log(str.length) //长度
+    const arr = str.split(' ') //分割
+    console.log(arr)
+    // 子串
+    console.log(str.substring(6, 8))//从6 -8 索引
+    //检测开头结尾
+    console.log(str.startsWith('a')) //false
+    console.log(str.startsWith('ing', 5))//第五个索引位置是否是i,true
+
+    console.log(str.endsWith('a'))//false
+    //转换大小写
+    console.log(str.toUpperCase()) //全部替换
+
+    //是否包含字符
+    console.log(str.includes('tive'))//true
+    console.log(str.indexOf('ing'))//返回找到的第一个索引
+    //替换
+    console.log(str.replace('ing', 'obj'))//obj->ing,生成新字符串
+    console.log(str)
+    console.log(str.match(/ing/))//匹配正则形式:字符串以obj开头
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .active {
+    width: 100px;
+    border: 5px dashed pink;
+  }
+
+  .nav {
+    background-color: pink;
+  }
+</style>
+
+<body>
+  <div class="nav">
+    <ul>
+      <li id="l1">1</li>
+      <li id="l2" name="n2">2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+  <div>
+    <img class="pic" src="images/1.webp" alt="">
+  </div>
+
+
+  <div>
+    <input type="text" value="请输入">
+    <button disabled>按钮</button>
+    <input type="checkbox" name="" id="" class="agree">
+  </div>
+
+  <div data-id="1"> 自定义属性 </div>
+  <!-- 数组对象一般用const声明，因为内容通过地址修改，但作为常量再页面 -->
+
+  <!-- dom 将整个HTML页面的标签当作一个对象，有属性和方法，目的是开发网页特效和用户交互
+  1. 文档树或 DOM 树：将 HTML 文档以树状结构直观的表现出，体现了标签与标签之间的关系 
+  2.节点是文档树的组成部分，每一个节点都是一个 DOM 对象，主要分为元素节点（标签）、属性节点（标签属性）、文本节点（标签的文字内容）等。-->
+  <script>
+    // 1.document对象， 内置的专门用于 DOM 的对象，该对象包含了若干的属性和方法
+    console.log(typeof document) //对象object
+    //通过 document 获取根节点
+    console.log(document.documentElement)  //得到html标签内的dom树
+    // 获取body
+    console.log(document.body)
+    // 通过 document.write 方法向网页输出内容
+    document.write('dom tree')
+
+    // 获取dom 对象
+    //1. 获取第一个，返回对象
+    const div = document.querySelector('div')
+    console.log(div)
+
+    //获取第几个
+    const child = document.querySelector('ul li:nth-child(2)')
+    console.log(child) //li#l2 标签
+
+
+    //2. 获取所有，返回伪数组，不能插入更新
+    const lis = document.querySelectorAll('ul li')
+    console.log(lis) //NodeList(5) [li#l1, li#l2, li, li, li]，一个也是数组返回
+
+
+    //document.getElementById 专门获取元素类型节点，根据标签的 id  属性查找
+    const l1 = document.getElementById('l1')
+    console.log(l1) //li#l1标签
+    //getElementsByTagName 根据标签名 
+    const n2 = document.getElementsByTagName('li')
+    console.log(n2) //返回 HTMLCollection(5) [li#l1, li#l2, li, li, li, l1: li#l1, l2: li#l2, n2: li#l2]
+
+    // 操作元素内容
+    //1. 修改dom innerText文本内容,将文本内容添加/更新到任意标签位置，是属性不是方法，文本中包含的标签不会被解析
+    // console.log(div.innerText) //只输入文本 12345
+    // div.innerText = '我是新增文本'// 会覆盖原有内容
+    //innerHTML 将文本内容添加/更新到任意标签位置，文本中包含的标签会被解析。
+    // console.log(div.innerHTML) //返回整个树 <ul>...</ul>
+    // div.innerHTML = `<ul>
+    //   <li id="l1">1</li>
+    //   <li id="l2" name="n2">2</li>
+    //   <li>3</li>
+    //   <li>4</li>
+    //   <li>5</li>
+    // </ul>`
+
+    //2. 修改元素属性
+    //2.1 常用属性、
+    //属性名修改,控制样式
+    const pic = document.querySelector('.pic')
+    // pic.src = 'images/2.webp'
+    // pic.style.width = '500px'
+    // pic.style.border = '1px solid #000'
+    //操作类名(className) 操作CSS，由于class是关键字, 所以使用className去代替，是使用新值换旧值, 如果需要添加一个类,需要保留之前的类名,属性
+    // pic.className = 'active' //前面的出现会被覆盖，pic的class = active 没有原来的pic
+    // 追加方式classList ，add方法
+    pic.classList.add('active')
+    //移除 remove
+    pic.classList.remove('active')
+    //切换toggle,有就删除，没有就加上
+    div.classList.toggle('nav')
+    console.log(div)
+    //2.2 表单属性
+    //获取:DOM对象.属性名
+    let input = document.querySelector('input')
+    console.log(input.value)
+    //设置:DOM对象.属性名= 新值
+    // input.type = 'password'
+    input.value = 'changed'
+    //disabled selected checked  布尔值
+    let btn = document.querySelector('button')
+    console.log(btn.disabled) //true
+    btn.disabled = false
+    btn.disabled = 'false' //true
+    let checkbox = document.querySelector('input:nth-of-type(2)')
+    console.log(checkbox.checked) //false
+    checkbox.checked = true
+    console.log(checkbox.checked) //true
+
+
+    //2.3 自定义属性
+    // 自定义属性：在html5中推出来了专门的data-自定义属性 ,在标签上一律以data-开头,在DOM对象上一律以dataset对象方式获取
+    const x = document.querySelector('div:last-of-type')
+    console.log(x.dataset.id) //返回一个对象列表
+
+    //3.间歇函数
+    // setInterval 是 JavaScript 中内置的函数，它的作用是间隔固定的时间自动重复执行另一个函数，也叫定时器函数。
+    function repeat() {
+      console.log('go on')
+    }
+    //使用 setInterval 调用 repeat ,不用加（），加了调用方法一次，定时器失效
+    setInterval(repeat(), 1000)
+  </script>
+</body>
+
+</html>

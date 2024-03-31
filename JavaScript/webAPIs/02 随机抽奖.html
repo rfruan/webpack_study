@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    width: 630px;
+    height: 420px;
+  }
+
+  ul li {
+    list-style: none;
+  }
+
+  ul {
+    position: absolute;
+    margin-top: -350px;
+    margin-left: 210px;
+  }
+</style>
+
+<body>
+  <div>
+    <img src="images/bg01.jpg" alt="">
+    <ul>
+      <li>
+        <h4>年会抽奖</h4>
+      <li>
+        <h1>一等奖:</h1>
+      </li>
+      <li>
+        <h3>二等奖:</h3>
+      </li>
+      <li>
+        <h5>三等奖:</h5>
+      </li>
+    </ul>
+  </div>
+  <script>
+    const arr = ['周杰伦', '刘德华', '周星驰', 'Pink老师', '张学友']
+    for (let i = 1; i <= 3; i++) {
+      let num = Math.floor(Math.random() * (arr.length))
+      const block = document.querySelector(`ul li:nth-of-type(${i + 1})`)
+      block.innerHTML = `<h${2 * i - 1}>` + block.innerText + `${arr[num]}` + `</h${2 * i - 1}>`
+      arr.splice(num, 1)
+    }
+
+
+  </script>
+</body>
+
+</html>

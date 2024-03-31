@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 以下等式返回true，是否正确，为什么
+    console.log(Array.prototype.__proto__ === Object); //错，因为网上找就会找到Object.prototype,而不是构造函数
+    console.log(Array.prototype.__proto__ === Object.prototype); //true,一直往上走，直到找不到，到最后null了那就是没有原型了，返回false
+  </script>
+</body>
+
+</html>
